@@ -40,6 +40,17 @@ const login = async (req, res) => {
     }
 }
 
+const logout = async (req, res) => {
+    req.session.destroy(err => { // Destroying session on logout
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error logging out');
+        } else {
+            res.send('Logout successful');
+        }
+    });
+}
 
 
-module.exports = { registration, login }
+
+module.exports = { registration, login, logout }
